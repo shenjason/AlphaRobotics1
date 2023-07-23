@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 @TeleOp(name = "Manual")
 public class ManualControl extends OpMode {
+    ColorSensor color_sensor;
 
     DcMotor motorLeft;
     DcMotor motorRight;
@@ -12,12 +13,12 @@ public class ManualControl extends OpMode {
 
     @Override
     public void init(){
-
+        color_sensor = hardwareMap.colorSensor.get("color");
     }
 
 
     @Override
     public void loop(){
-        if (color_sensor.blue() == )
+
     }
 }
