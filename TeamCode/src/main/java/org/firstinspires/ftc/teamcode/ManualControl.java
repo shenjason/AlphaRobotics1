@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class ManualControl extends OpMode {
     DcMotor motorLeft;
     DcMotor motorRight;
-
     ColorSensor colorSensor;
 
 
@@ -19,7 +18,8 @@ public class ManualControl extends OpMode {
     public void init(){
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
-        colorSensor = hardwareMap.colorSensor.get("color");
+        colorSensor = hardwareMap.colorSensor.get("" +
+                "color");
     }
 
     @Override
@@ -27,12 +27,12 @@ public class ManualControl extends OpMode {
         double powerLeft = gamepad1.left_stick_y;
         double powerRight = gamepad1.right_stick_y;
 
-        motorLeft.setPower(-powerLeft * 0.8);
+        motorLeft.setPower(powerLeft * 0.8);
         motorRight.setPower(-powerRight * 0.8);
 
         telemetry.addLine(String.valueOf(colorSensor.red()));
-        telemetry.addLine(String.valueOf(colorSensor.blue()));
         telemetry.addLine(String.valueOf(colorSensor.green()));
+        telemetry.addLine(String.valueOf(colorSensor.blue()));
         telemetry.update();
     }
 }
