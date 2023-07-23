@@ -23,9 +23,7 @@ public class ManualControl extends OpMode {
         double powerLeft = gamepad1.left_stick_y;
         double powerRight = gamepad1.right_stick_y;
 
-        motorLeft.setPower(powerLeft * 0.8);
-        motorRight.setPower(powerRight * 0.8);
-
-
+        motorLeft.setPower(-powerLeft * 0.8);
+        motorRight.setPower(-powerRight * 0.8);
     }
 }
