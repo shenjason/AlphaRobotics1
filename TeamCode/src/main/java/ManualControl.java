@@ -7,7 +7,7 @@ public class ManualControl extends OpMode {
 
     @Override
     public void init(){
-
+        //hi
     }
 
 
