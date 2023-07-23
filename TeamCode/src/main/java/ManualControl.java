@@ -2,7 +2,7 @@
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-
+import com.qualcomm.robotcore.hardware.ColorSensor;
 @TeleOp(name = "Manual")
 public class ManualControl extends OpMode {
 
@@ -18,6 +18,6 @@ public class ManualControl extends OpMode {
 
     @Override
     public void loop(){
-
+        if (color_sensor.blue() == )
     }
 }
