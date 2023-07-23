@@ -1,22 +1,26 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name = "Manual")
 public class ManualControl extends OpMode {
-
     DcMotor motorLeft;
     DcMotor motorRight;
+
+    ColorSensor colorSensor;
+
 
 
     @Override
     public void init(){
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
+        colorSensor = hardwareMap.colorSensor.get("color");
     }
-
 
     @Override
     public void loop(){
@@ -25,5 +29,10 @@ public class ManualControl extends OpMode {
 
         motorLeft.setPower(-powerLeft * 0.8);
         motorRight.setPower(-powerRight * 0.8);
+
+        telemetry.addLine(String.valueOf(colorSensor.red()));
+        telemetry.addLine(String.valueOf(colorSensor.blue()));
+        telemetry.addLine(String.valueOf(colorSensor.green()));
+        telemetry.update();
     }
 }
