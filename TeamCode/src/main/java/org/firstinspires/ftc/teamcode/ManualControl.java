@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class ManualControl extends OpMode {
     DcMotor motorLeft;
     DcMotor motorRight;
-
     ColorSensor colorSensor;
 
 
@@ -20,19 +19,26 @@ public class ManualControl extends OpMode {
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         colorSensor = hardwareMap.colorSensor.get("color");
+        motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    @Override
+    @Override 
     public void loop(){
-        double powerLeft = gamepad1.left_stick_y;
-        double powerRight = gamepad1.right_stick_y;
+//        double powerLeft = gamepad1.left_stick_y;
+//        double powerRight = gamepad1.right_stick_y;
 
-        motorLeft.setPower(-powerLeft * 0.8);
-        motorRight.setPower(-powerRight * 0.8);
+        if (gamepad1.a){
+            MotorEasy.MotorMoveDistance(motorLeft, 1000, 0.6);
+            MotorEasy.MotorMoveDistance(motorRight, -1000, 0.6);
+        }
 
-        telemetry.addLine(String.valueOf(colorSensor.red()));
-        telemetry.addLine(String.valueOf(colorSensor.blue()));
-        telemetry.addLine(String.valueOf(colorSensor.green()));
-        telemetry.update();
+//        motorLeft.setPower(powerLeft * 0.8);
+//        motorRight.setPower(-powerRight * 0.8);
+//
+//        telemetry.addLine(String.valueOf(colorSensor.red()));
+//        telemetry.addLine(String.valueOf(colorSensor.green()));
+//        telemetry.addLine(String.valueOf(colorSensor.blue()));
+//        telemetry.update();
     }
 }
