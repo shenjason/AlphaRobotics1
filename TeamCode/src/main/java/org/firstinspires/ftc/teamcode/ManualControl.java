@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import java.security.spec.EllipticCurve;
+
 @TeleOp(name = "Manual")
 public class ManualControl extends OpMode {
     DcMotor motorLeft;
@@ -23,17 +25,19 @@ public class ManualControl extends OpMode {
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    @Override 
+    @Override
     public void loop(){
 //        double powerLeft = gamepad1.left_stick_y;
 //        double powerRight = gamepad1.right_stick_y;
 
         if (gamepad1.a){
-            MotorEasy.MotorMoveDistance(motorLeft, 1000, 0.6);
-            MotorEasy.MotorMoveDistance(motorRight, -1000, 0.6);
+            MotorEasy.MotorMoveDistance(motorLeft, 1000, 0.6, null);
+            MotorEasy.MotorMoveDistance(motorRight, -1000, 0.6, null);
+
         }
 
-//        motorLeft.setPower(powerLeft * 0.8);
+//        motorLeft.setPower(powerLeft * 0.8);\
+
 //        motorRight.setPower(-powerRight * 0.8);
 //
 //        telemetry.addLine(String.valueOf(colorSensor.red()));
