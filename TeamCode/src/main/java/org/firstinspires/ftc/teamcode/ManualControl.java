@@ -31,5 +31,15 @@ public class ManualControl extends OpMode {
     @Override
     public void loop(){
         //Move with joystick
+        double y = gamepad1.right_stick_y;
+        double x = gamepad1.right_stick_x;
+        
+        if (Math.abs(x) > Math.abs(y)) {
+            motorLeft.setPower(x);
+            motorRight.setPower(x);
+        }else{
+            motorLeft.setPower(y);
+            motorRight.setPower(-y);
+        }
     }
 }

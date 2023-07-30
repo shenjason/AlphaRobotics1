@@ -30,6 +30,7 @@ public class MotorEasy {
         motor.setTargetPosition((int)Target);
         motor.setPower(power);
         motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
 }
