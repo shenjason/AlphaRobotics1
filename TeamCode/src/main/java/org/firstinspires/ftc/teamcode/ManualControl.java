@@ -14,6 +14,8 @@ public class ManualControl extends OpMode {
     DcMotor motorRight;
     ColorSensor colorSensor;
 
+    RobotMove robot;
+
 
 
     @Override
@@ -23,10 +25,11 @@ public class ManualControl extends OpMode {
         colorSensor = hardwareMap.colorSensor.get("color");
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot = new RobotMove(motorLeft, motorRight, 370);
     }
 
     @Override
     public void loop(){
-
+        //Move with joystick
     }
 }
