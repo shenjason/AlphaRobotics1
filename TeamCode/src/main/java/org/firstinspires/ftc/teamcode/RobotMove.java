@@ -30,4 +30,14 @@ public class RobotMove {
         MotorEasy.MotorMoveDistance(motorLeft, -distance, power, null);
         MotorEasy.MotorMoveDistance(motorRight, distance, power, null);
     }
+
+    public void MoveForward(double distance, double power){
+        MotorEasy.MotorMoveDistance(motorLeft, distance, power, null);
+        MotorEasy.MotorMoveDistance(motorRight, -distance, power, null);
+    }
+
+    public void MoveBackward(double distance, double power){
+        MotorEasy.MotorMoveDistance(motorLeft, -distance, power, null);
+        MotorEasy.MotorMoveDistance(motorRight, distance, power, null);
+    }
 }
