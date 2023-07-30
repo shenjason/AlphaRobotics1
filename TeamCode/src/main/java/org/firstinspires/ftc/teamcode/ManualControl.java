@@ -29,11 +29,9 @@ public class ManualControl extends OpMode {
     public void loop(){
 //        double powerLeft = gamepad1.left_stick_y;
 //        double powerRight = gamepad1.right_stick_y;
-
         if (gamepad1.a){
             MotorEasy.MotorMoveDistance(motorLeft, 1000, 0.6, null);
             MotorEasy.MotorMoveDistance(motorRight, -1000, 0.6, null);
-
         }
 
 //        motorLeft.setPower(powerLeft * 0.8);\
