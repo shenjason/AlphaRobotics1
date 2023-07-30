@@ -12,6 +12,8 @@ import java.security.spec.EllipticCurve;
 public class ManualControl extends OpMode {
     DcMotor motorLeft;
     DcMotor motorRight;
+
+    DcMotor motorArm;
     ColorSensor colorSensor;
 
     RobotMove robot;
@@ -22,24 +24,42 @@ public class ManualControl extends OpMode {
     public void init(){
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
+        motorArm = hardwareMap.get(DcMotor.class, "motorArm");
         colorSensor = hardwareMap.colorSensor.get("color");
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot = new RobotMove(motorLeft, motorRight, 370);
     }
 
     @Override
     public void loop(){
         //Move with joystick
-        double y = gamepad1.right_stick_y;
-        double x = gamepad1.right_stick_x;
-        
-        if (Math.abs(x) > Math.abs(y)) {
-            motorLeft.setPower(x);
-            motorRight.setPower(x);
-        }else{
-            motorLeft.setPower(y);
-            motorRight.setPower(-y);
+        double y = gamepad1.left_stick_y;
+        double x = gamepad1.right_stick_x * 0.5;
+
+        double powerLeft = y - x;
+        double powerRight = y + x;
+
+        powerLeft = Math.min(powerLeft, 1);
+        powerRight = Math.min(powerRight, 1);
+        powerLeft = Math.max(powerLeft, -1);
+        powerRight = Math.max(powerRight, -1);
+
+        motorLeft.setPower(powerLeft);
+        motorRight.setPower(-powerRight);
+        if (gamepad1.dpad_up){
+            motorArm.setPower(0.5);
+
+        }else {
+            motorArm.setPower(0);
         }
+        if (gamepad1.dpad_down){
+            motorArm.setPower(-0.5);
+
+        }else{
+            motorArm.setPower(0);
+        }
+
     }
 }
