@@ -19,7 +19,6 @@ public class MotorEasy {
         motor.setPower(power);
         motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
     }
 
     public static void MotorMoveDistance(DcMotor motor, double distanceInmm, double power, Function callback){
@@ -31,8 +30,7 @@ public class MotorEasy {
         motor.setTargetPosition((int)Target);
         motor.setPower(power);
         motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-
+        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
 }
