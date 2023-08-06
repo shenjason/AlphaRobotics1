@@ -48,15 +48,11 @@ public class ManualControl extends OpMode {
 
         motorLeft.setPower(powerLeft);
         motorRight.setPower(-powerRight);
-        if (gamepad1.dpad_up){
-            motorArm.setPower(0.5);
 
-        }else {
-            motorArm.setPower(0);
-        }
         if (gamepad1.dpad_down){
-            motorArm.setPower(-0.5);
-
+            motorArm.setPower(-1);
+        }else if (gamepad1.dpad_up){
+            motorArm.setPower(1);
         }else{
             motorArm.setPower(0);
         }
