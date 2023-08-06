@@ -27,17 +27,17 @@ public class RobotMove {
     public void TurnLeft(double degrees, double power){
         double fraction = degrees / 360.0;
         double distance = fraction * length * Math.PI;
-        MotorEasy.MotorMoveDistance(motorLeft, -distance, power, null);
+        MotorEasy.MotorMoveDistance(motorLeft, distance, power, null);
         MotorEasy.MotorMoveDistance(motorRight, distance, power, null);
     }
 
     public void MoveForward(double distance, double power){
-        MotorEasy.MotorMoveDistance(motorLeft, distance, power, null);
-        MotorEasy.MotorMoveDistance(motorRight, -distance, power, null);
+        MotorEasy.MotorMoveDistance(motorLeft, -distance, power, null);
+        MotorEasy.MotorMoveDistance(motorRight, distance, power, null);
     }
 
     public void MoveBackward(double distance, double power){
-        MotorEasy.MotorMoveDistance(motorLeft, -distance, power, null);
-        MotorEasy.MotorMoveDistance(motorRight, distance, power, null);
+        MotorEasy.MotorMoveDistance(motorLeft, distance, power, null);
+        MotorEasy.MotorMoveDistance(motorRight, -distance, power, null);
     }
 }

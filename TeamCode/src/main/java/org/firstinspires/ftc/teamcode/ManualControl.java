@@ -14,7 +14,6 @@ public class ManualControl extends OpMode {
     DcMotor motorRight;
 
     DcMotor motorArm;
-    ColorSensor colorSensor;
 
     RobotMove robot;
 
@@ -25,7 +24,6 @@ public class ManualControl extends OpMode {
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         motorArm = hardwareMap.get(DcMotor.class, "motorArm");
-        colorSensor = hardwareMap.colorSensor.get("color");
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
