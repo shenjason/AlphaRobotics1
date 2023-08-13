@@ -27,7 +27,7 @@ public class Move extends OpMode {
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot = new RobotMove(motorLeft, motorRight, 370);
+        robot = new RobotMove(motorLeft, motorRight, 360);
     }
 
     @Override
@@ -36,5 +36,8 @@ public class Move extends OpMode {
         long startTime = System.currentTimeMillis();
         while (System.currentTimeMillis() - startTime < 5000) { }
         robot.TurnRight(90, 0.5);
+        startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime < 5000) { }
+
     }
 }

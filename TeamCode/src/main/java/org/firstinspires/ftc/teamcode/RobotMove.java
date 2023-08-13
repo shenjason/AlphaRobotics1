@@ -20,8 +20,8 @@ public class RobotMove {
     public void TurnRight(double degrees, double power){
         double fraction = degrees / 360.0;
         double distance = fraction * length * Math.PI;
-        MotorEasy.MotorMoveDistance(motorLeft, distance, power, null);
-        MotorEasy.MotorMoveDistance(motorRight, distance, power, null);
+        MotorEasy.MotorMoveDistance(motorLeft, -distance, power, null);
+        MotorEasy.MotorMoveDistance(motorRight, -distance, power, null);
     }
 
     public void TurnLeft(double degrees, double power){

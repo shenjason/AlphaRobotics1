@@ -13,19 +13,28 @@ public class ManualControl extends OpMode {
     DcMotor motorLeft;
     DcMotor motorRight;
 
+    DcMotor motorHand;
+
     DcMotor motorArm;
 
+    boolean prevstate;
+
     RobotMove robot;
+    int num = 1;
+
 
 
 
     @Override
     public void init(){
+        prevstate = false;
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         motorArm = hardwareMap.get(DcMotor.class, "motorArm");
+        motorHand = hardwareMap.get(DcMotor.class,"motorHand");
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot = new RobotMove(motorLeft, motorRight, 370);
     }
@@ -54,6 +63,14 @@ public class ManualControl extends OpMode {
         }else{
             motorArm.setPower(0);
         }
+
+        if (gamepad1.b){
+            if (prevstate != gamepad1.b){
+                motorHand.setPower(num);
+                num *= -1;
+            }
+        }
+        prevstate = gamepad1.b;
 
     }
 }
