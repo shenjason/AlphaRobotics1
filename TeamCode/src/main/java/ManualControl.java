@@ -19,6 +19,6 @@ public class ManualControl extends OpMode {
 
     @Override
     public void loop(){
-
+        
     }
 }
