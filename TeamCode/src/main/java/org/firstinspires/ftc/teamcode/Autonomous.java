@@ -50,14 +50,31 @@ public class Autonomous extends OpMode {
 
     @Override
     public void loop() {
-        double Yaw = bno.getAngularOrientation().firstAngle;
+
         double Roll = bno.getAngularOrientation().secondAngle;
         double Pitch = bno.getAngularOrientation().thirdAngle;
 
 
+    }
+    public void TurnRight(double X, double power){
+        double Yaw = bno.getAngularOrientation().firstAngle;
+        while (Math.abs(X-Yaw) >= 1){
+            if (Yaw < X){
+                motorRight.setPower(power);
+                motorLeft.setPower(-power);
 
+            }
+            else if (Yaw > X){
+                motorLeft.setPower(power);
+                motorRight.setPower(-power);
+
+
+            }
+
+        }
+        motorRight.setPower(power);
+        motorLeft.setPower(power);
 
     }
-    public voi
 
 }
