@@ -20,7 +20,7 @@ public class ManualControl extends OpMode {
     boolean prevstate;
 
     RobotMove robot;
-    int num = 1;
+    double num;
 
 
 
@@ -28,6 +28,7 @@ public class ManualControl extends OpMode {
     @Override
     public void init(){
         prevstate = false;
+        num = 0.5;
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         motorArm = hardwareMap.get(DcMotor.class, "motorArm");
@@ -65,12 +66,16 @@ public class ManualControl extends OpMode {
         }
 
         if (gamepad1.b){
-            if (prevstate != gamepad1.b){
-                motorHand.setPower(num);
-                num *= -1;
-            }
+            motorHand.setPower(0.5);
         }
-        prevstate = gamepad1.b;
+
+        else if (gamepad1.y){
+            motorHand.setPower(-0.5);
+        }
+        else{
+            motorHand.setPower(0);
+
+        }
 
     }
 }
