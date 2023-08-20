@@ -11,6 +11,8 @@ import java.security.spec.EllipticCurve;
 @TeleOp(name = "Manual")
 public class ManualControl extends OpMode {
     DcMotor motorLeft;
+
+    BNO055IMU bno;
     DcMotor motorRight;
 
     DcMotor motorHand;
@@ -29,15 +31,18 @@ public class ManualControl extends OpMode {
     public void init(){
         prevstate = false;
         num = 0.5;
+        BNO055IMU.Parameters parm = new BNO055IMU.Parameters();
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         motorArm = hardwareMap.get(DcMotor.class, "motorArm");
         motorHand = hardwareMap.get(DcMotor.class,"motorHand");
+        bno = hardwareMap.get(BNO055IMU.class, "bno");
+        bno.initialize(parm);
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot = new RobotMove(motorLeft, motorRight, 370);
+        robot = new RobotMove(motorLeft, motorRight, bno);
     }
 
     @Override

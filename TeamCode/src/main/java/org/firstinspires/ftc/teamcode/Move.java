@@ -16,18 +16,22 @@ public class Move extends OpMode {
     DcMotor motorArm;
 
     RobotMove robot;
+    BNO055IMU bno;
 
 
 
     @Override
     public void init(){
+        BNO055IMU.Parameters parm = new BNO055IMU.Parameters();
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         motorArm = hardwareMap.get(DcMotor.class, "motorArm");
+        bno = hardwareMap.get(BNO055IMU.class, "bno");
+        bno.initialize(parm);
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot = new RobotMove(motorLeft, motorRight, 360);
+        robot = new RobotMove(motorLeft, motorRight, bno);
     }
 
     @Override
