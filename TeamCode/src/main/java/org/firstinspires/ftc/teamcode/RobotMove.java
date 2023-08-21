@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -12,11 +13,11 @@ public class RobotMove {
 
     public DcMotor motorLeft;
     public DcMotor motorRight;
-    public BNO055IMU bno;
+    public BHI260IMU bno;
 
 
 
-    public RobotMove(DcMotor motorleft, DcMotor motorright, BNO055IMU bno){
+    public RobotMove(DcMotor motorleft, DcMotor motorright, BHI260IMU bno){
         motorLeft = motorleft;
         motorRight = motorright;
         this.bno = bno;
@@ -25,10 +26,10 @@ public class RobotMove {
 
 
     public void TurnRight(double angle, double power){
-        Orientation angles = bno.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
+        Orientation angles = bno.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
         double startangle = angles.firstAngle;
         while (Math.abs(angle-(angles.firstAngle-startangle)) >= 1){
-            angles = bno.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
+            angles = bno.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
             if (angles.firstAngle-startangle < angle){
                 motorRight.setPower(power);
                 motorLeft.setPower(power);
@@ -44,10 +45,10 @@ public class RobotMove {
     }
 
     public void TurnLeft(double angle, double power){
-        Orientation angles = bno.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
+        Orientation angles = bno.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
         double startangle = angles.firstAngle;
         while (Math.abs(angle-(angles.firstAngle-startangle)) >= 1){
-            angles = bno.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
+            angles = bno.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
             if (angles.firstAngle-startangle < angle){
                 motorRight.setPower(power);
                 motorLeft.setPower(power);

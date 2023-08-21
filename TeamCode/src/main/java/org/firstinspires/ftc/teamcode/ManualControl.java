@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -12,7 +13,7 @@ import java.security.spec.EllipticCurve;
 public class ManualControl extends OpMode {
     DcMotor motorLeft;
 
-    BNO055IMU bno;
+    BHI260IMU bno;
     DcMotor motorRight;
 
     DcMotor motorHand;
@@ -22,7 +23,6 @@ public class ManualControl extends OpMode {
     boolean prevstate;
 
     RobotMove robot;
-    double num;
 
 
 
@@ -30,14 +30,12 @@ public class ManualControl extends OpMode {
     @Override
     public void init(){
         prevstate = false;
-        num = 0.5;
-        BNO055IMU.Parameters parm = new BNO055IMU.Parameters();
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight = hardwareMap.get(DcMotor.class, "motorRight");
         motorArm = hardwareMap.get(DcMotor.class, "motorArm");
         motorHand = hardwareMap.get(DcMotor.class,"motorHand");
-        bno = hardwareMap.get(BNO055IMU.class, "bno");
-        bno.initialize(parm);
+        bno = hardwareMap.get(BHI260IMU.class, "bno");
+        bno.initialize();
         motorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
